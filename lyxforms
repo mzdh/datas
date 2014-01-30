@@ -1,0 +1,475 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass jarticle
+\use_default_options true
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf3
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language swedish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+ロバストポートフォリオ最適化のための期待リターン推定
+\end_layout
+
+\begin_layout Author
+松田淳
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+2014年2月
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+修士（経営学）論文
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+指導教員
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+主指導教員：山田雄二教授
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+副指導教員：牧本直樹教授
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+副指導教員：倉橋節也准教授
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+筑波大学ビジネス科学研究科
+\begin_inset Newline newline
+\end_inset
+
+経営システム科学専攻
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{30pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+ロバスト最適化ポートフォリオのための
+\begin_inset Newline newline
+\end_inset
+
+期待リターン推定
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+松田淳
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+筑波大学ビジネス科学研究科
+\begin_inset Newline newline
+\end_inset
+
+経営システム科学専攻
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+概要
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+長期の資産運用にはポートフォリオ最適化の考え方が不可欠である．しかし，古典的なポートフォリオ選択手法である平均分散モデルは，特に期待リターンの与え方で出力結果で
+あるポートフォリオ重みが極端に変化することが知られている．この問題の解決策として，近年では期待リターンの不確実性を考慮したロバスト最適化ポートフォリオが注目され
+ている．本論文では，複数の株式および債券インデックスを対象に，期待リターンの与え方を変化させ，ローリングウインドウによる平均分散ポートフォリオとロバスト最適化ポ
+ートフォリオのパフォーマンスを比較し，ロバスト最適化ポートフォリオの有効性を検討する．
+\end_layout
+
+\begin_layout Standard
+まず，収益率時系列のデータ生成系列を多変量自己回帰（VAR）モデルでシミュレーションし，この結果から得られた期待リターンおよび期待リターンの不確実性集合を用いて
+ポートフォリオを構築し，その時系列パフォーマンスを評価する．
+\end_layout
+
+\begin_layout Standard
+次に，VARモデルによる無条件期待値および条件付期待値をポートフォリオの期待リターンに用い，これらの予測誤差を不確実性集合としてポートフォリオを構築し，その時系
+列パフォーマンスを評価する．
+\end_layout
+
+\begin_layout Standard
+最後に，単変量時系列（AR）モデルを用いて，VARモデル同様にポートフォリオを構築し，その時系列パフォーマンスを評価する．
+\end_layout
+
+\begin_layout Standard
+これらの結果から，ロバスト最適化ポートフォリオは期待リターンの推計誤差がポートフォリオ重みに与える影響を低下させることを示す．また，ロバスト最適化ポートフォリオ
+が下方リスクによる損失回避に与することから，資産運用における安定的なポートフォリオ構築に有用となることを示す．
+\end_layout
+
+\begin_layout Standard
+さらに，期待リターンの推計に時系列モデルを用いたロバスト最適化ポートフォリオには無条件期待値を与えることが有効であり，加えて適切な不確実性集合を与えることで効率
+的な運用が可能となることを示す．
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{30pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+Return Estimation for Robust Portfolio Optimization Problem
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+Atsushi Matsuda
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+Graduate School of Scientific Management
+\begin_inset Newline newline
+\end_inset
+
+University of Tsukuba, Tokyo
+\begin_inset Newline newline
+\end_inset
+
+3-29-1, Otsuka, Bunkyo-ku, Japan
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+Abstract
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Portfolio optimization is one of the best-known and most widely used methods
+ in financial portfolio selection.
+ The classical mean-variance portfolio selection model of Markowitz, H.
+ has been widely recognized as one of the cornerstones of modern portfolio
+ theory.
+ However, the analytical results indicate that a mean-variance efficient
+ portfolio's weights can be extremely sensitive from error of input parameters;
+ expected return and risk.
+ Recently, a robust optimization model is proposed for concurring this issue,
+ which considers uncertainty of input parameters.
+ 
+\end_layout
+
+\begin_layout Standard
+This paper examines the effectiveness of the robust optimization portfolio
+ through comparing the rolling-window performances between mean-variance
+ portfolio and robust optimization portfolio, by forecasting the several
+ expected returns of multiple bond and equity indices.
+ 
+\end_layout
+
+\begin_layout Standard
+The first experiments evaluate the historical performance of portfolio.
+ The portfolio is built with expected return, risks, and uncertainty in
+ expected returns were generated by vector autoregressive; VAR process.
+ 
+\end_layout
+
+\begin_layout Standard
+The second experiments evaluate the historical performance of portfolio,
+ which is the non-conditional and conditional expectation in VAR model with
+ its estimation error.
+ 
+\end_layout
+
+\begin_layout Standard
+The third experiments evaluate the historical performance of portfolio which
+ is the non-conditional and conditional expectation in autoregressive; AR
+ model with its estimation error.
+ 
+\end_layout
+
+\begin_layout Standard
+These results indicate that estimation error of expected return gives less
+ affect on robust optimization portfolio weights.
+ Furthermore, robust optimization portfolio is useful for stable portfolio
+ construction because it avoid the loss of downside risks.
+ Moreover, these result shows that it is effective for robust optimization
+ portfolio to give a non-conditional expectation with adequate uncertainty
+ set.
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
