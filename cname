@@ -1,0 +1,11 @@
+dd <- read_csv(fname, skip = 1,col_names = FALSE)
+colnames(dd) <- c("Date",   "Code",    "Name",
+                  "Pmkt",   "Sctr",    "Unit",
+                  "Price",  "MA25",    "ROR1M",
+                  "ROR3M",  "ROR6M",   "ROR1Y",
+                  "PPE",    "PDY",     "PB",
+                  "PSALES", "POINCM",  "PRINCM",
+                  "PNINCM", "FROR1M",  "FROR3M",
+                  "FROR6M", "NKFLG",   "MCAP",
+                  "MAD200D","MAD100D", "MAD75D",
+                  "MAD25D", "BETA3Y",  "BETA5Y")
